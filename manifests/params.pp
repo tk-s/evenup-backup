@@ -87,6 +87,7 @@ class backup::params {
   $email_failure        = true
   $email_from           = undef
   $email_to             = undef
+  $relay_sendmail       = false
   $relay_host           = 'localhost'
   $relay_port           = '25'
   $relay_user           = undef

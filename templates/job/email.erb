@@ -7,6 +7,9 @@
     mail.on_failure           = <%= @email_failure %>
     mail.from                 = "<%= @_email_from %>"
     mail.to                   = "<%= @email_to %>"
+<% if @relay_sendmail -%>
+    mail.delivery_method      = :sendmail
+<% end -%>
 <% if @relay_host -%>
     mail.address              = "<%= @relay_host %>"
 <% end -%>
