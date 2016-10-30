@@ -125,7 +125,7 @@ define backup::job (
 
   if !member(['archive', 'mongodb', 'mysql', 'pgsql', 'riak', 'redis'], $_types) {
     $__types = join($_types, ', ')
-    fail("[Backup::Job::${name}]: Invalid types in '${__types}'.  Supported types are archive, mongodb, mysql, riak and redis")
+    fail("[Backup::Job::${name}]: Invalid types in '${__types}'.  Supported types are archive, mongodb, mysql, pgsql, riak and redis")
   }
 
   # Validate archive specific things
