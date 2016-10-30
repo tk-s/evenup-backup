@@ -1,0 +1,23 @@
+  ##
+  # PostgresSQL [Database]
+  #
+  database PostgreSQL do |db|
+    # To dump all databases, set `db.name = :all` (or leave blank)
+<%  if @dbname -%>
+    db.name     = "<%= @dbname %>"
+<%  end -%>
+<%  if @username -%>
+    db.username = "<%= @username %>"
+<%  end -%>
+<%  if @password -%>
+    db.password = "<%= @password %>"
+<%  end -%>
+    db.host     = "<%= @host %>"
+<% if @port -%>
+    db.port     = "<%= @port %>"
+<%  end -%>
+<% if @skip_tables -%>
+<%    _skip_tables = Array(@skip_tables) -%>
+    db.skip_tables = ['<%= _skip_tables.join("', '") -%>']
+<%  end -%>
+  end

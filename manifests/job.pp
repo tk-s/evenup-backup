@@ -123,7 +123,7 @@ define backup::job (
     fail("[Backup::Job::${name}]: Utility paths need to be a hash: {'utility_name' => 'path'}")
   }
 
-  if !member(['archive', 'mongodb', 'mysql', 'riak', 'redis'], $_types) {
+  if !member(['archive', 'mongodb', 'mysql', 'pgsql', 'riak', 'redis'], $_types) {
     $__types = join($_types, ', ')
     fail("[Backup::Job::${name}]: Invalid types in '${__types}'.  Supported types are archive, mongodb, mysql, riak and redis")
   }
@@ -142,7 +142,7 @@ define backup::job (
   } # Archive
 
   # Validate database specific things
-  if !empty(intersection($_types, ['mongodb', 'mysql'])) {
+  if !empty(intersection($_types, ['mongodb', 'mysql', 'pgsql'])) {
     if $port and !is_integer($port) {
       fail("[Backup::Job::${name}]: Invalid port (${port})")
     }
@@ -169,6 +169,13 @@ define backup::job (
   if member($_types, 'mysql') {
     if $skip_tables and (!is_string($skip_tables) and !is_array($skip_tables)) {
       fail("[Backup::Job::${name}]: Tables to skip in backup for MySQL must be a string or array if defined")
+    }
+  }
+
+  # PostgresSQL
+  if member($_types, 'pgsql') {
+    if $skip_tables and (!is_string($skip_tables) and !is_array($skip_tables)) {
+      fail("[Backup::Job::${name}]: Tables to skip in backup for PostresSQL must be a string or array if defined")
     }
   }
 
@@ -401,6 +408,19 @@ define backup::job (
     concat::fragment { "${_name}_mysql":
       target  => "/etc/backup/models/${_name}.rb",
       content => template('backup/job/mysql.erb'),
+      order   => '13',
+    }
+  }
+  if member($_types, 'pgsql') {
+    # Template uses
+    # - $dbname
+    # - $username
+    # - $password
+    # - $port
+    # - $skip_tables
+    concat::fragment { "${_name}_pgsql":
+      target  => "/etc/backup/models/${_name}.rb",
+      content => template('backup/job/pgsql.erb'),
       order   => '13',
     }
   }
