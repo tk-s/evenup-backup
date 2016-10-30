@@ -25,9 +25,9 @@ class backup::params {
       elsif $::lsbmajdistrelease {
         $releaseversion = $::lsbmajdistrelease
       }
-      if versioncmp($releaseversion, '12.04') < 1 {
-        fail("${::operatingsystem} >= 14.04 is required")
-      }
+      #if versioncmp($releaseversion, '12.04') < 1 {
+      #  fail("${::operatingsystem} >= 14.04 is required")
+      #}
     }
     default: {
       fail("${::osfamily} not supported by backups")
