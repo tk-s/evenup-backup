@@ -13,4 +13,16 @@
 <% if @relay_host -%>
     mail.port                 = <%= @relay_port %>
 <% end -%>
+<% if @relay_user -%>
+    mail.user_name            = "<%= @relay_user %>"
+<% end -%>
+<% if @relay_pass -%>
+    mail.password             = "<%= @relay_pass %>"
+<% end -%>
+<% if @relay_auth -%>
+    mail.authentication       = "<%= @relay_auth %>"
+<% end -%>
+<% if @relay_encryption -%>
+    mail.encryption           = "<%= @relay_encryption %>"
+<% end -%>
   end

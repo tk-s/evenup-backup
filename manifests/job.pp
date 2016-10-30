@@ -94,6 +94,10 @@ define backup::job (
   $email_to          = $::backup::email_to,
   $relay_host        = $::backup::relay_host,
   $relay_port        = $::backup::relay_port,
+  $relay_user        = $::backup::relay_user,
+  $relay_pass        = $::backup::relay_pass,
+  $relay_auth        = $::backup::relay_auth,
+  $relay_encryption  = $::backup::relay_encryption,
   # Hipchat
   $enable_hc         = $::backup::enable_hc,
   $hc_success        = $::backup::hc_success,

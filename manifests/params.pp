@@ -89,6 +89,10 @@ class backup::params {
   $email_to             = undef
   $relay_host           = 'localhost'
   $relay_port           = '25'
+  $relay_user           = undef
+  $relay_pass           = undef
+  $relay_auth           = undef
+  $relay_encryption     = undef
   # Hipchat
   $enable_hc            = false
   $hc_success           = false
