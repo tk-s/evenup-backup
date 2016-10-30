@@ -23,6 +23,6 @@
     mail.authentication       = "<%= @relay_auth %>"
 <% end -%>
 <% if @relay_encryption -%>
-    mail.encryption           = "<%= @relay_encryption %>"
+    mail.encryption           = <%= @relay_encryption %>
 <% end -%>
   end
