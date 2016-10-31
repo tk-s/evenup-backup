@@ -73,6 +73,11 @@ class backup (
   $email_to             = $::backup::params::email_to,
   $relay_host           = $::backup::params::relay_host,
   $relay_port           = $::backup::params::relay_port,
+  $relay_user           = $::backup::params::relay_user,
+  $relay_pass           = $::backup::params::relay_pass,
+  $relay_auth           = $::backup::params::relay_auth,
+  $relay_encryption     = $::backup::params::relay_encryption,
+  $relay_senmail        = $::backup::params::relay_sendmail,
   # Hipchat
   $enable_hc            = $::backup::params::enable_hc,
   $hc_success           = $::backup::params::hc_success,
@@ -81,6 +86,14 @@ class backup (
   $hc_token             = $::backup::params::hc_token,
   $hc_from              = $::backup::params::hc_from,
   $hc_notify            = $::backup::params::hc_notify,
+  # Slack
+  $enable_slack         = $::backup::params::enable_slack,
+  $slack_success        = $::backup::params::slack_success,
+  $slack_warning        = $::backup::params::slack_warning,
+  $slack_failure        = $::backup::params::slack_failure,
+  $slack_token          = $::backup::params::slack_token,
+  $slack_from           = $::backup::params::slack_from,
+  $slack_notify         = $::backup::params::slack_notify,
   ) inherits backup::params {
 
   class { '::backup::install': } ~>

@@ -107,6 +107,14 @@ define backup::job (
   $hc_token          = $::backup::hc_token,
   $hc_from           = $::backup::hc_from,
   $hc_notify         = $::backup::hc_notify,
+  # Slack
+  $enable_slack      = $::backup::enable_slack,
+  $slack_success     = $::backup::slack_success,
+  $slack_warning     = $::backup::slack_warning,
+  $slack_failure     = $::backup::slack_failure,
+  $slack_token       = $::backup::slack_token,
+  $slack_from        = $::backup::slack_from,
+  $slack_notify      = $::backup::slack_notify,
 ){
 
   if ! defined(Class['backup']) {
@@ -307,6 +315,19 @@ define backup::job (
     }
   } # Hipchat
 
+  # Slask
+  if $enable_slack {
+    validate_bool($slack_success, $slack_warning, $slack_failure)
+
+    if !$slack_token or !is_string($slack_token) {
+      fail("[Backup::Job::${name}]: slack_token is required for slack notifications")
+    }
+
+    if !is_string($slack_notify) {
+      fail("[Backup::Job::${name}]: slack_notify needs to be a channel to notify")
+    }
+  } # Slack
+
   ### Phewh, that was a lot of validation
 
   $bad_chars = '\.\\\/-'
@@ -426,7 +447,7 @@ define backup::job (
     concat::fragment { "${_name}_pgsql":
       target  => "/etc/backup/models/${_name}.rb",
       content => template('backup/job/pgsql.erb'),
-      order   => '13',
+      order   => '14',
     }
   }
 
@@ -555,6 +576,21 @@ define backup::job (
       target  => "/etc/backup/models/${_name}.rb",
       content => template('backup/job/hipchat.erb'),
       order   => '51',
+    }
+  }
+
+  if $enable_slack {
+    # Template uses
+    # - $slack_success
+    # - $slack_warning
+    # - $slack_failure
+    # - $slack_token
+    # - $slack_from
+    # - $slack_notify
+    concat::fragment { "${_name}_slack":
+      target  => "/etc/backup/models/${_name}.rb",
+      content => template('backup/job/slack.erb'),
+      order   => '52',
     }
   }
 

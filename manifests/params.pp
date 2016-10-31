@@ -102,4 +102,12 @@ class backup::params {
   $hc_token             = undef
   $hc_from              = 'Backup'
   $hc_notify            = []
+  # Slack
+  $enable_slack         = false
+  $slack_success        = false
+  $slack_warning        = true
+  $slack_failure        = true
+  $slack_token          = undef
+  $slack_from           = 'Backup'
+  $slack_notify         = ''
 }

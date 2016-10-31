@@ -1,0 +1,14 @@
+  ##
+  # Slack [Notifier]
+  #
+  notify_by Slack do |slack|
+    slack.on_success = <%= @slack_success %>
+    slack.on_warning = <%= @slack_warning %>
+    slack.on_failure = <%= @slack_failure %>
+
+    slack.icon_emoji = ':warning:'
+
+    slack.token = '<%= @slack_token %>'
+    slack.username = '<%= @slack_from %>'
+    slack.channel = '<%= @slack_channel %>'
+  end
