@@ -77,7 +77,7 @@ class backup (
   $relay_pass           = $::backup::params::relay_pass,
   $relay_auth           = $::backup::params::relay_auth,
   $relay_encryption     = $::backup::params::relay_encryption,
-  $relay_senmail        = $::backup::params::relay_sendmail,
+  $relay_sendmail        = $::backup::params::relay_sendmail,
   # Hipchat
   $enable_hc            = $::backup::params::enable_hc,
   $hc_success           = $::backup::params::hc_success,
@@ -91,7 +91,7 @@ class backup (
   $slack_success        = $::backup::params::slack_success,
   $slack_warning        = $::backup::params::slack_warning,
   $slack_failure        = $::backup::params::slack_failure,
-  $slack_webhook_url          = $::backup::params::slack_webhook_url,
+  $slack_webhook_url    = $::backup::params::slack_webhook_url,
   $slack_from           = $::backup::params::slack_from,
   $slack_notify         = $::backup::params::slack_notify,
   ) inherits backup::params {

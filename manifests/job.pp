@@ -92,7 +92,7 @@ define backup::job (
   $email_failure     = $::backup::email_failure,
   $email_from        = $::backup::email_from,
   $email_to          = $::backup::email_to,
-  $relay_sendmail    = $::backup::email_sendmail,
+  $relay_sendmail    = $::backup::relay_sendmail,
   $relay_host        = $::backup::relay_host,
   $relay_port        = $::backup::relay_port,
   $relay_user        = $::backup::relay_user,
