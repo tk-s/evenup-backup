@@ -91,7 +91,7 @@ class backup (
   $slack_success        = $::backup::params::slack_success,
   $slack_warning        = $::backup::params::slack_warning,
   $slack_failure        = $::backup::params::slack_failure,
-  $slack_token          = $::backup::params::slack_token,
+  $slack_webhook_url          = $::backup::params::slack_webhook_url,
   $slack_from           = $::backup::params::slack_from,
   $slack_notify         = $::backup::params::slack_notify,
   ) inherits backup::params {

@@ -112,7 +112,7 @@ define backup::job (
   $slack_success     = $::backup::slack_success,
   $slack_warning     = $::backup::slack_warning,
   $slack_failure     = $::backup::slack_failure,
-  $slack_token       = $::backup::slack_token,
+  $slack_webhook_url = $::backup::slack_webhook_url,
   $slack_from        = $::backup::slack_from,
   $slack_notify      = $::backup::slack_notify,
 ){
@@ -319,8 +319,8 @@ define backup::job (
   if $enable_slack {
     validate_bool($slack_success, $slack_warning, $slack_failure)
 
-    if !$slack_token or !is_string($slack_token) {
-      fail("[Backup::Job::${name}]: slack_token is required for slack notifications")
+    if !$slack_webhook_url or !is_string($slack_webhook_url) {
+      fail("[Backup::Job::${name}]: slack_webhook_url is required for slack notifications")
     }
 
     if !is_string($slack_notify) {
@@ -584,7 +584,7 @@ define backup::job (
     # - $slack_success
     # - $slack_warning
     # - $slack_failure
-    # - $slack_token
+    # - $slack_webhook_url
     # - $slack_from
     # - $slack_notify
     concat::fragment { "${_name}_slack":

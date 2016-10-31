@@ -107,7 +107,7 @@ class backup::params {
   $slack_success        = false
   $slack_warning        = true
   $slack_failure        = true
-  $slack_token          = undef
+  $slack_webhook_url    = undef
   $slack_from           = 'Backup'
   $slack_notify         = ''
 }
