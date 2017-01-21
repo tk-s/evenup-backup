@@ -10,7 +10,7 @@
     s3.region            = "<%= @aws_region -%>"
 <% end -%>
 <% if @keep -%>
-    s3.keep              = <%= @keep -%>
+    s3.keep              = <%= @keep
 <% end -%>
 
 <% if @reduced_redundancy -%>
@@ -18,6 +18,6 @@
 <% end -%>
 
 <% if @aws_host -%>
-    s3.fog_options = { endpoint: @aws_host }
+    s3.fog_options = { endpoint: <%= @aws_host -%> }
 <% end -%>
   end
