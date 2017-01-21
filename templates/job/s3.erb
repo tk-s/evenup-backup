@@ -12,9 +12,11 @@
 <% if @keep -%>
     s3.keep              = <%= @keep -%>
 <% end -%>
+
 <% if @reduced_redundancy -%>
     s3.storage_class     = :reduced_redundancy
 <% end -%>
+
 <% if @aws_host -%>
     s3.fog_options = { endpoint: @aws_host }
 <% end -%>
