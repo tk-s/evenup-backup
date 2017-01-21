@@ -47,6 +47,7 @@ define backup::job (
   # S3
   $aws_access_key      = $::backup::aws_access_key,
   $aws_secret_key      = $::backup::aws_secret_key,
+  $aws_host            = undef,
   $bucket              = $::backup::bucket,
   $aws_region          = $::backup::aws_region,
   $reduced_redundancy  = $::backup::reduced_redundancy,
@@ -504,6 +505,7 @@ define backup::job (
     # - $aws_secret_key
     # - $path
     # - $aws_region
+    # - $aws_host (if set)
     # - $bucket
     # - $keep
     concat::fragment { "${_name}_s3":
