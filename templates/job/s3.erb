@@ -10,7 +10,7 @@
     s3.region            = "<%= @aws_region -%>"
 <% end -%>
 <% if @keep -%>
-    s3.keep              = <%= @keep
+    s3.keep              = <%= @keep -%>
 <% end -%>
 
 <% if @reduced_redundancy -%>
